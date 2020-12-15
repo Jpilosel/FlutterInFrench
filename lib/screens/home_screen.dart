@@ -8,6 +8,24 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppbarComponent.build(),
       drawer: MenuComponent(),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 25.0,
+          right: 10.0,
+          left: 10.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(child: Text('01-12-2020 15:50')),
+            Container(child: Text('Titre')),
+            Container(
+              child: Image.asset('assets/logoFlutter.png'),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
