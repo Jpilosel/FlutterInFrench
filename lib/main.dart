@@ -9,6 +9,7 @@ void main() => runApp(FlutterInFrenchApp());
 class FlutterInFrenchApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage('assets/logoFlutter.png'), context);
     return MaterialApp(
       title: "Flutter in French",
       initialRoute: '/',
