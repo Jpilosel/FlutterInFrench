@@ -39,3 +39,10 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+android/app/google-services.json
+android/app/build.gradle
+android/build.gradle
+pubspec.lock
+ios/Runner.xcodeproj/project.pbxproj
+ios/Podfile.lock
+ios/Podfile.lock
