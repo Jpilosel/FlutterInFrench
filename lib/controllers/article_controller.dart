@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 class ArticleController extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  get getArticles =>
-      _firestore.collection("articles").orderBy("date", descending: true).get();
+  Future getArticles() async {
+    QuerySnapshot dataFirestore = await _firestore
+        .collection("articles")
+        .orderBy("date", descending: true)
+        .get();
+  }
 }
