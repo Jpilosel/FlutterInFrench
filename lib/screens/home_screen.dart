@@ -39,9 +39,23 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(child: Text(_articleData[articleNumber].date)),
                       Container(
-                          child: Text(_articleData[articleNumber].description)),
+                          child: Text(
+                        _articleData[articleNumber].date,
+                        style: TextStyle(fontSize: 16.0),
+                      )),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Container(
+                          child: Text(
+                        _articleData[articleNumber].description,
+                        style: TextStyle(
+                            fontSize: 17.0, fontWeight: FontWeight.bold),
+                      )),
+                      SizedBox(
+                        height: 8.0,
+                      ),
                       Container(child: Text(_articleData[articleNumber].title)),
                       Container(
                           child: Image.network(
