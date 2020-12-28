@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterinfrench/controllers/article_controller.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +9,11 @@ import 'package:flutterinfrench/screens/contact_screen.dart';
 import 'package:flutterinfrench/screens/home_screen.dart';
 import 'package:flutterinfrench/screens/themes/main_theme.dart';
 
-void main() => runApp(FlutterInFrenchApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(FlutterInFrenchApp());
+}
 
 class FlutterInFrenchApp extends StatelessWidget {
   @override

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,7 +12,7 @@ class ArticleController extends ChangeNotifier {
     getArticles();
   }
 
-  Future getArticles() async {
+  Future<List<ArticleModel>> getArticles() async {
     QuerySnapshot _dataFirestore = await _firestore
         .collection("articles")
         .orderBy("date", descending: true)
@@ -37,6 +39,6 @@ class ArticleController extends ChangeNotifier {
         }
       }
     }).toList();
-    print(_articleData[0].date);
+    return UnmodifiableListView(_articleData);
   }
 }
