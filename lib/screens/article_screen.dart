@@ -8,12 +8,13 @@ class ArcticleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _calcTitleHeight = MediaQuery.of(context).size.height * 0.15;
     return Scaffold(
       appBar: AppbarComponent.build(),
       body: ListView(
         children: <Widget>[
           Container(
-            height: 100.0,
+            height: _calcTitleHeight,
             child: FittedBox(
                 fit: BoxFit.fill,
                 child: Text(
