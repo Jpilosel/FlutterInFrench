@@ -18,7 +18,9 @@ class ArticleController extends ChangeNotifier {
         .orderBy("date", descending: true)
         .get();
 
-    List<ArticleModel> _articleData = _dataFirestore.docs.map((article) {
+    List<ArticleModel> _articleData = [];
+
+    _dataFirestore.docs.forEach((article) {
       final _temp = ArticleModel(
           title: article.get("name"),
           description: article.get("description"),
@@ -35,10 +37,10 @@ class ArticleController extends ChangeNotifier {
             _temp.description.isNotEmpty &&
             _temp.imageUrl.isNotEmpty &&
             _temp.title.isNotEmpty) {
-          return _temp;
+          return _articleData.add(_temp);
         }
       }
-    }).toList();
+    });
     return UnmodifiableListView(_articleData);
   }
 }

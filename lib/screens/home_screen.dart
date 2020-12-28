@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
           if (!snapshot.hasData) {
             Center(child: CircularProgressIndicator());
           }
-          if (snapshot.data.first == null) {
+          if (snapshot.data.isEmpty) {
             return Container(
               alignment: Alignment.center,
               child: Text("Il n'y a pas d'article pour le moment."),
