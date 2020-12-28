@@ -1,8 +1,10 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
+
+import 'dart:collection';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutterinfrench/models/article_model.dart';
 
 class ArticleController extends ChangeNotifier {
@@ -42,5 +44,13 @@ class ArticleController extends ChangeNotifier {
       }
     });
     return UnmodifiableListView(_articleData);
+  }
+
+  Future<void> launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      launch(url);
+    } else {
+      throw "Erreur, impossible de lancer l'url";
+    }
   }
 }
