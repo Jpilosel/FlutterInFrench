@@ -25,9 +25,9 @@ class HomeScreen extends StatelessWidget {
               child: Text("Il n'y a pas d'article pour le moment."),
             );
           }
-          List<ArticleModel> _articleData = snapshot.data;
+          List<ArticleModel> _articlesData = snapshot.data;
           return ListView.builder(
-              itemCount: _articleData.length,
+              itemCount: _articlesData.length,
               itemBuilder: (context, articleNumber) {
                 return Padding(
                   padding: const EdgeInsets.only(
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                     children: <Widget>[
                       Container(
                           child: Text(
-                        _articleData[articleNumber].date,
+                        _articlesData[articleNumber].date,
                         style: TextStyle(fontSize: 16.0),
                       )),
                       SizedBox(
@@ -49,17 +49,22 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Container(
                           child: Text(
-                        _articleData[articleNumber].description,
+                        _articlesData[articleNumber].description,
                         style: TextStyle(
                             fontSize: 17.0, fontWeight: FontWeight.bold),
                       )),
                       SizedBox(
                         height: 8.0,
                       ),
-                      Container(child: Text(_articleData[articleNumber].title)),
                       Container(
-                          child: Image.network(
-                              _articleData[articleNumber].imageUrl))
+                          child: Text(_articlesData[articleNumber].title)),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(context, '/article',
+                            arguments: _articlesData[articleNumber]),
+                        child: Container(
+                            child: Image.network(
+                                _articlesData[articleNumber].imageUrl)),
+                      )
                     ],
                   ),
                 );

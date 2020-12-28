@@ -25,10 +25,16 @@ class FlutterInFrenchApp extends StatelessWidget {
       child: MaterialApp(
         title: "Flutter in French",
         initialRoute: '/',
+        onGenerateRoute: (route) {
+          switch (route.name) {
+            case '/article':
+              return MaterialPageRoute(
+                  builder: (context) => ArcticleScreen(route.arguments));
+          }
+        },
         routes: {
           '/': (context) => HomeScreen(),
           '/contact': (context) => ContactScreen(),
-          'article': (context) => ArcticleScreen()
         },
         theme: MainTheme.build(),
       ),
