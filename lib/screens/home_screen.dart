@@ -25,26 +25,31 @@ class HomeScreen extends StatelessWidget {
               child: Text("Il n'y a pas d'article pour le moment."),
             );
           }
-          print(snapshot.data[0].imageUrl);
-          return Padding(
-            padding: const EdgeInsets.only(
-              top: 25.0,
-              right: 10.0,
-              left: 10.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(child: Text(snapshot.data[0].date)),
-                Container(child: Text(snapshot.data[0].description)),
-                Container(child: Text(snapshot.data[0].title)),
-                Container(
-                  child: Image.network(snapshot.data[0].imageUrl),
-                )
-              ],
-            ),
-          );
+          List<ArticleModel> _articleData = snapshot.data;
+          return ListView.builder(
+              itemCount: _articleData.length,
+              itemBuilder: (context, articleNumber) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    top: 25.0,
+                    right: 10.0,
+                    left: 10.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(child: Text(_articleData[articleNumber].date)),
+                      Container(
+                          child: Text(_articleData[articleNumber].description)),
+                      Container(child: Text(_articleData[articleNumber].title)),
+                      Container(
+                          child: Image.network(
+                              _articleData[articleNumber].imageUrl))
+                    ],
+                  ),
+                );
+              });
         },
       ),
     );
