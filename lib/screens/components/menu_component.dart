@@ -27,8 +27,12 @@ class MenuComponent extends StatelessWidget {
                   style: GoogleFonts.robotoSlab(fontSize: 22.0),
                 )),
                 ListTile(
-                    title: Text('En savoir plus',
-                        style: GoogleFonts.robotoSlab(fontSize: 22.0))),
+                  title: Text(
+                    'En savoir plus',
+                    style: GoogleFonts.robotoSlab(fontSize: 22.0),
+                  ),
+                  onTap: () => Navigator.pushNamed(context, '/contact'),
+                ),
               ],
             ),
           ),
