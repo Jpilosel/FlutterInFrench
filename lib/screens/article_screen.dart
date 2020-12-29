@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutterinfrench/controllers/article_controller.dart';
 import 'package:flutterinfrench/models/article_model.dart';
 import 'package:flutterinfrench/screens/components/appbar_component.dart';
+import 'package:provider/provider.dart';
 
 class ArcticleScreen extends StatelessWidget {
   final ArticleModel articleData;
@@ -8,6 +11,8 @@ class ArcticleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ArticleController _controller =
+        Provider.of<ArticleController>(context);
     final _calcTitleHeight = MediaQuery.of(context).size.height * 0.065;
     return Scaffold(
       appBar: AppbarComponent.build(),
@@ -27,10 +32,14 @@ class ArcticleScreen extends StatelessWidget {
           ),
           Image.network(articleData.imageUrl),
           SizedBox(height: 20.0),
-          Text(
-            articleData.description,
-            style: TextStyle(fontSize: 20.0),
+          Html(
+            data: articleData.description,
+            onLinkTap: (url) => _controller.launchUrl(url),
           ),
+          // Text(
+          //   articleData.description,
+          //   style: TextStyle(fontSize: 20.0),
+          // ),
         ],
       ),
     );
