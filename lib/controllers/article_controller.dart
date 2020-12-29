@@ -53,4 +53,12 @@ class ArticleController extends ChangeNotifier {
       throw "Erreur, impossible de lancer l'url";
     }
   }
+
+  Future<void> refreshArticles() async {
+    await Future.delayed(Duration(
+        seconds:
+            3)); // evite que l'utilisateur de saturer la bdd en rafraichissant sans arret
+    await getArticles();
+    notifyListeners(); // a utuliser si stateLess qui perment de notifier a la screen que le contenue a changé
+  }
 }

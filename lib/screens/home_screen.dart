@@ -26,49 +26,54 @@ class HomeScreen extends StatelessWidget {
             );
           }
           List<ArticleModel> _articlesData = snapshot.data;
-          return ListView.builder(
-              itemCount: _articlesData.length,
-              itemBuilder: (context, articleNumber) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    top: 25.0,
-                    right: 10.0,
-                    left: 10.0,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                          child: Text(
-                        _articlesData[articleNumber].date,
-                        style: TextStyle(fontSize: 16.0),
-                      )),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Container(
-                          child: Text(
-                        _articlesData[articleNumber].description,
-                        style: TextStyle(
-                            fontSize: 17.0, fontWeight: FontWeight.bold),
-                      )),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Container(
-                          child: Text(_articlesData[articleNumber].title)),
-                      GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, '/article',
-                            arguments: _articlesData[articleNumber]),
-                        child: Container(
-                            child: Image.network(
-                                _articlesData[articleNumber].imageUrl)),
-                      )
-                    ],
-                  ),
-                );
-              });
+          return RefreshIndicator(
+            onRefresh: () => _controller.refreshArticles(),
+            child: ListView.builder(
+                shrinkWrap:
+                    true, // permet de prendre seulement la place nécessaire pour la listeVeiew et simplifie le rafraichissemet de la page avec le RefreshIndicator
+                itemCount: _articlesData.length,
+                itemBuilder: (context, articleNumber) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 25.0,
+                      right: 10.0,
+                      left: 10.0,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                            child: Text(
+                          _articlesData[articleNumber].date,
+                          style: TextStyle(fontSize: 16.0),
+                        )),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Container(
+                            child: Text(
+                          _articlesData[articleNumber].description,
+                          style: TextStyle(
+                              fontSize: 17.0, fontWeight: FontWeight.bold),
+                        )),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Container(
+                            child: Text(_articlesData[articleNumber].title)),
+                        GestureDetector(
+                          onTap: () => Navigator.pushNamed(context, '/article',
+                              arguments: _articlesData[articleNumber]),
+                          child: Container(
+                              child: Image.network(
+                                  _articlesData[articleNumber].imageUrl)),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          );
         },
       ),
     );
