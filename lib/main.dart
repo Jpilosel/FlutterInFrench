@@ -30,6 +30,10 @@ class FlutterInFrenchApp extends StatelessWidget {
             case '/article':
               return MaterialPageRoute(
                   builder: (context) => ArcticleScreen(route.arguments));
+              break;
+            default:
+              return MaterialPageRoute(builder: (context) => HomeScreen());
+              break;
           }
         },
         routes: {

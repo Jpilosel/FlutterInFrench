@@ -52,16 +52,10 @@ class HomeScreen extends StatelessWidget {
                           height: 5.0,
                         ),
                         Container(
-                            child: Text(
-                          _articlesData[articleNumber].description,
-                          style: TextStyle(
-                              fontSize: 17.0, fontWeight: FontWeight.bold),
-                        )),
+                            child: Text(_articlesData[articleNumber].title)),
                         SizedBox(
                           height: 8.0,
                         ),
-                        Container(
-                            child: Text(_articlesData[articleNumber].title)),
                         GestureDetector(
                           onTap: () => Navigator.pushNamed(context, '/article',
                               arguments: _articlesData[articleNumber]),
